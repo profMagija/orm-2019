@@ -41,12 +41,14 @@ w = np.log(z)
 
 ### računanje grešaka
 
-U primeru je data funkcija `majoriraj` koja majorira date **NENEGATIVNE** argumente po pravilima za majoriranje argumenata.
+U primeru je data funkcija `majoriraj` koja majorira date **NENEGATIVNE** argumente po pravilima za majoriranje argumenata. U nastavku su dati neki primeri izvedenih veličina i kako se računaju njihove vrednosti i greške.
 
 - Z = X + Y
 
   ```py
   z = x + y
+
+  # greška:
   delta_z = majoriraj( delta_x + delta_y )
   ```
 
@@ -54,13 +56,20 @@ U primeru je data funkcija `majoriraj` koja majorira date **NENEGATIVNE** argume
 
   ```py
   z = x * y
+
+  # greška:
   delta_z = majoriraj( (delta_x/x + delta_y/y) * z )
+  # ili (ukoliko već imamo relativne greške za X i Y)
+  rel_z = rel_x + rel_y
+  delta_z = majoriraj( rel_z * z )
   ```
 
 - Z = ln X
 
   ```py
   z = np.log(x)
+
+  # greška:
   delta_z = majoriraj( delta_x / x )
   ```
 
