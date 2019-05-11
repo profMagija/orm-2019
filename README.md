@@ -90,6 +90,18 @@ Biblioteka `matplotlib.pyplot`, obično importovana kao `plt`
 
 - pazite na redosled argumenata
 
+### `plt.title('Naslov Grafika')` - dodavanje naslova grafika
+
+### `plt.xlabel('x opis')`, `plt.ylabel('y opis')` - labele za ose na grafiku
+
+### `plt.show()` - prikazuje grafik
+
+- takođe briše grafik nakon što ga prikaže. Sve naredne `plt` komande crtaju novi plot.
+
+### `plt.savefig('putanja/do/fajla.png')` - čuva plot u fajl
+
+- najbolje pozovite pre svakog `plt.show()` kako ne biste ručno čuvali svaki put.
+
 ## step 5 - linearni fit
 
 Ako su nam dati podaci o zavisnosti X i Y linearni fit tih podataka se može napraviti.
