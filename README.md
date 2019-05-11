@@ -86,7 +86,7 @@ Biblioteka `matplotlib.pyplot`, obično importovana kao `plt`
   - obično ćete hteti da za svaki slučaj tačno navedete x-koordinate
 - za tačke stavite `'.'` kao format
 
-### `plt.plot(x, y, y_err, x_err, format, ...)` - crtanje grafika sa greškama
+### `plt.errorbar(x, y, y_err, x_err, format, ...)` - crtanje grafika sa greškama
 
 - pazite na redosled argumenata
 
