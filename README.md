@@ -86,9 +86,21 @@ Biblioteka `matplotlib.pyplot`, obično importovana kao `plt`
   - obično ćete hteti da za svaki slučaj tačno navedete x-koordinate
 - za tačke stavite `'.'` kao format
 
-### `plt.plot(x, y, y_err, x_err, format, ...)` - crtanje grafika sa greškama
+### `plt.errorbar(x, y, y_err, x_err, format, ...)` - crtanje grafika sa greškama
 
 - pazite na redosled argumenata
+
+### `plt.title('Naslov Grafika')` - dodavanje naslova grafika
+
+### `plt.xlabel('x opis')`, `plt.ylabel('y opis')` - labele za ose na grafiku
+
+### `plt.show()` - prikazuje grafik
+
+- takođe briše grafik nakon što ga prikaže. Sve naredne `plt` komande crtaju novi plot.
+
+### `plt.savefig('putanja/do/fajla.png')` - čuva plot u fajl
+
+- najbolje pozovite pre svakog `plt.show()` kako ne biste ručno čuvali svaki put.
 
 ## step 5 - linearni fit
 
