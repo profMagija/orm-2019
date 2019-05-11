@@ -41,7 +41,7 @@ w = np.log(z)
 
 ### računanje grešaka
 
-U primeru je data funkcija `majoriraj` koja majorira date **NENEGATIVNE** argumente po pravilima za majoriranje argumenata. U nastavku su dati neki primeri izvedenih veličina i kako se računaju njihove vrednosti i greške.
+U primeru je data funkcija `majoriraj` koja majorira date **NENEGATIVNE** argumente po pravilima za majoriranje grešaka. U nastavku su dati neki primeri izvedenih veličina i kako se računaju njihove vrednosti i greške.
 
 - Z = X + Y
 
