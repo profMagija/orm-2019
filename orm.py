@@ -3,18 +3,56 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def majoriraj(x):
-	"""majora dati nenegativni niz gresaka.
+        """majora dati nenegativni niz gresaka.
+        >>> majoriraj(0.32)
+        0.4
+        >>> majoriraj(0.123)
+        0.13
+        """
+        st = -np.floor(np.log10(x))
+        norm = x * (10**st)
+        maj_norm = np.where(norm >= 2, np.ceil(norm), np.ceil(norm * 10) / 10)
+        maj = np.where(x == 0, 0, maj_norm / (10**st))
+        return maj
 
-	>>> majoriraj(0.32)
-	0.4
-	>>> majoriraj(0.123)
-	0.13
-	"""
-	st = -np.floor(np.log10(x))
-	norm = x * (10**st)
-	maj_norm = np.where(norm >= 2, np.ceil(norm), np.ceil(norm * 10) / 10)
-	maj = np.where(x == 0, 0, maj_norm / (10**st))
-	return maj
+def lin_fit_sa_greskom(x, y):
+        """traži linearni fit sa greškom.
+
+        vraća cetvorku (a, b, err_a, err_b):
+          - a: koeficijent pravca
+          - b: odsecak na y-osi
+          - err_a: greska a
+          - err_b: greska b
+
+        referenca: http://mathworld.wolfram.com/LeastSquaresFitting.html
+        """
+
+        # prvo nadjemo k (koef pravca), n (odsecak), 
+        (a, b), res, _, _, _ = np.polyfit(x, y, 1, full=True)
+        print(a, b, res)
+        
+        # broj podataka
+        n = x.shape[0]
+        print(n)
+
+        # x average
+        x_bar = np.mean(x)
+        print(x_bar)
+
+        # zbir kvadrata (x_i - x_avg)^2
+        ss_xx = np.sum((x - x_bar)**2)
+        print(ss_xx)
+
+        s = np.sqrt(res / (n - 2))
+        print(s)
+
+        # greska koeficijenta pravca
+        err_a = s / np.sqrt(ss_xx)
+
+        # greska odsecka
+        err_b = s * np.sqrt(1/n + (x_bar**2)/ss_xx)
+
+        return a, b, err_a[0], err_b[0]
 
 # putanja do podataka
 # podaci imaju sledece kolone:
@@ -99,11 +137,14 @@ delta_ln_t = majoriraj(podaci.delta_t / podaci.t)
 #    koef pravca = n
 #    odsecak = ln(B)
 
-n, ln_b = np.polyfit(ln_t, ln_p, 1)
+n, ln_b, err_n, err_ln_b = lin_fit_sa_greskom(ln_t, ln_p)
+
+# n, ln_b = np.polyfit(ln_t, ln_p, 1)
 # b = np.exp(ln_b)
 # exp je eksponencijalna funkcija e^x
-print(' n =', n)
-print(' B =', np.exp(ln_b))
+print(' n  =', n)
+print(' B  =', np.exp(ln_b))
+print(' ∆n =', err_n)
 
 ######## NACRTAJ GRAFIK ln(P) od ln(T) ########
 # cuvamo ga kao 'grafik2.png'
@@ -113,6 +154,8 @@ plt.xlabel('ln T')
 plt.ylabel('ln P')
 plt.errorbar(ln_t, ln_p, delta_ln_p, delta_ln_t, '.')
 
+ln_t = np.concatenate([[0], ln_t.values])
+
 # linearnu funkciju crtamo tako sto uzmemo bilo koje podatke za x
 # a y izracunamo kao y = n * x + k (linearna funkcija)
 # u nasem slucaju:
@@ -121,6 +164,8 @@ plt.errorbar(ln_t, ln_p, delta_ln_p, delta_ln_t, '.')
 #   - k = ln_b
 #   - pa je stoga y = n*ln_t + b
 plt.plot(ln_t, n * ln_t + ln_b, 'r-')
+plt.plot(ln_t, (n + err_n) * ln_t + (ln_b+err_ln_b), 'r-')
+plt.plot(ln_t, (n - err_n) * ln_t + (ln_b-err_ln_b), 'r-')
 plt.savefig('grafik2.png')
 plt.show()
 
