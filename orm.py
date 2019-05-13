@@ -164,8 +164,6 @@ ln_t = np.concatenate([[0], ln_t.values])
 #   - k = ln_b
 #   - pa je stoga y = n*ln_t + b
 plt.plot(ln_t, n * ln_t + ln_b, 'r-')
-plt.plot(ln_t, (n + err_n) * ln_t + (ln_b+err_ln_b), 'r-')
-plt.plot(ln_t, (n - err_n) * ln_t + (ln_b-err_ln_b), 'r-')
 plt.savefig('grafik2.png')
 plt.show()
 

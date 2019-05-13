@@ -115,7 +115,13 @@ k, n = np.polyfit(X, Y, 1)
 
 Konstanta 1 govori da je u pitanju linearni fit (`np.polyfit` može da radi polinomni fit proizvoljnog stepena).
 
-Ukoliko nam je potrebna i greška linearnog fita (rezidual), možemo funkciji polyfit proslediti parametar `full=True`. U tom slučaju vraća 5-orku, čiji prvi član su koeficijenti (kao u prednodnom slučaju), a drugi tražena greška. Ostale vraćene vrednosti nam nisu od značaja u ovom slučaju.
+Ukoliko nam je potrebna i greška linearnog fita, možemo funkciji polyfit proslediti parametar `full=True`.
+U tom slučaju vraća 5-orku, čiji prvi član su koeficijenti (kao u prednodnom slučaju), a drugi rezidual linearnog fita. 
+Ostale vraćene vrednosti nam nisu od značaja u ovom slučaju.
+
+Od reziduala se može izračunati greška linearnog fita, metodom koja je opisana [na ovom linku](http://mathworld.wolfram.com/LeastSquaresFitting.html).
+Ona je implementirana u datom primeru koda, kao funkcija `lin_fit_sa_greskom`, koja za date x i y nizove računa koeficijent pravca, odsečak na y-osi, i grešku i za jedan i za drugi.
+
 
 ```py
 (k, n), err, _, _, _ = np.polyfit(X, Y, 1, full=True)
