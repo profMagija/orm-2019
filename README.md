@@ -113,4 +113,14 @@ k, n = np.polyfit(X, Y, 1)
 # n - odsečak na y-osi
 ```
 
-Konstanta 1 govori da je u pitanju linearni fit (`np.polyfit` može da radi polinomni fit proizvoljnog stepena) 
+Konstanta 1 govori da je u pitanju linearni fit (`np.polyfit` može da radi polinomni fit proizvoljnog stepena).
+
+Ukoliko nam je potrebna i greška linearnog fita (rezidual), možemo funkciji polyfit proslediti parametar `full=True`. U tom slučaju vraća 5-orku, čiji prvi član su koeficijenti (kao u prednodnom slučaju), a drugi tražena greška. Ostale vraćene vrednosti nam nisu od značaja u ovom slučaju.
+
+```py
+(k, n), err, _, _, _ = np.polyfit(X, Y, 1, full=True)
+
+# k - koeficijent pravca
+# n - odsečak na y-osi
+# err - greška koeficijenta pravca
+```
