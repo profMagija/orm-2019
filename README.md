@@ -124,7 +124,7 @@ Ona je implementirana u datom primeru koda, kao funkcija `lin_fit_sa_greskom`, k
 
 
 ```py
-k, n, err_k, err_n = lin_fit_sa_greskom(X, Y, 1)
+k, n, err_k, err_n = lin_fit_sa_greskom(X, Y)
 
 # k - koeficijent pravca
 # n - odsečak na y-osi
