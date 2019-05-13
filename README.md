@@ -124,9 +124,10 @@ Ona je implementirana u datom primeru koda, kao funkcija `lin_fit_sa_greskom`, k
 
 
 ```py
-(k, n), err, _, _, _ = np.polyfit(X, Y, 1, full=True)
+k, n, err_k, err_n = lin_fit_sa_greskom(X, Y, 1)
 
 # k - koeficijent pravca
 # n - odsečak na y-osi
-# err - greška koeficijenta pravca
+# err_k - greška koeficijenta pravca
+# err_n - greška osdečka
 ```
