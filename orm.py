@@ -16,15 +16,19 @@ def majoriraj(x):
         return maj
 
 def lin_fit_sa_greskom(x, y):
-        """traži linearni fit sa greškom.
+        """traži linearni fit sa greškom. Koristi algoritam za grešku najmanjih kvadrata [LS].
 
         vraća cetvorku (a, b, err_a, err_b):
           - a: koeficijent pravca
           - b: odsecak na y-osi
           - err_a: greska a
           - err_b: greska b
-
-        referenca: http://mathworld.wolfram.com/LeastSquaresFitting.html
+          
+        Reference
+        ---------
+        .. [LS] Weisstein, Eric W. "Least Squares Fitting." 
+                From MathWorld--A Wolfram Web Resource. 
+                http://mathworld.wolfram.com/LeastSquaresFitting.html
         """
 
         # prvo nadjemo k (koef pravca), n (odsecak), 
